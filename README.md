@@ -1,43 +1,66 @@
 # nestjs-boilerplate
 
-NestJs bolerplate
+### 프로젝트 설명
 
-## Hierachy
+- NestJs bolerplate
+- Clean Architecture 를 적용한 NestJs 프로젝트 구조
+  - 클린아키텍처의 이상적인 형태가 아닌 약간의 타협이 포함되어있음
+  - 점증적으로 개선해나갈 예정
+
+### 프로젝트 구성
+
+- NestJs
+- TypeORM (PostgreSQL)
+
+### 추가 예정 사항
+
+- Logger, Filter, Interceptor, Guard, Middleware
+- Swagger, Redis, JWT, Passport
+
+### Hierachy
 
 ```
-src/
-├── core/
-│   ├── entities/
-│   ├── use-cases/
-│   └── repositories/
-│       ├── product.repository.interface.ts
-│       ├── order.repository.interface.ts
-│       └── user.repository.interface.ts
-│
-├── application/
-│   ├── dtos/
-│   └── event-handlers/
-│       └── slack-notify.handler.ts
-│
-├── infrastructure/
-│   ├── repositories/
-│   │   ├── product.repository.ts
-│   │   ├── order.repository.ts
-│   │   └── user.repository.ts
-│   ├── database/
-│   ├── messaging/
-│   └── cache/
-│
-└── interface-adapters/
-    ├── controllers/
-    │   ├── order.controller.ts
-    │   ├── product.controller.ts
-    │   └── user.controller.ts
-    ├── api/
-    ├── external-services/
-    │   ├── payment-gateway.service.ts
-    │   └── slack-notification.service.ts
-    └── queue/
+── src/
+│   ├── app.controller.ts
+│   ├── app.module.ts
+│   ├── app.service.ts
+│   ├── application/
+│   │   └── services/
+│   ├── core/
+│   │   ├── entity/
+│   │   │   ├── auth.entity.ts
+│   │   │   ├── todo.entity.ts
+│   │   │   └── user.entity.ts
+│   │   ├── repositories/
+│   │   │   ├── todoRepository.interface.ts
+│   │   │   └── userRepository.interface.ts
+│   │   └── use-case/
+│   │       └── todo/
+│   ├── infrastructure/
+│   │   ├── configuration/
+│   │   │   ├── configuration.module.ts
+│   │   │   ├── database-config/
+│   │   │   └── typeorm/
+│   │   ├── database/
+│   │   │   ├── database.module.ts
+│   │   │   ├── entities/
+│   │   │   ├── migrations/
+│   │   │   ├── repositories/
+│   │   │   └── seedes/
+│   │   ├── infrastructure.module.ts
+│   │   ├── logger/
+│   │   │   ├── logger.module.ts
+│   │   │   ├── logger.service.spec.ts
+│   │   │   └── logger.service.ts
+│   │   └── usecases-proxy/
+│   │       ├── usecase-prox.module.ts
+│   │       └── usecase-proxy.ts
+│   ├── interface-adapters/
+│   │   └── controller/
+│   │       ├── controller.module.ts
+│   │       ├── todo/
+│   │       └── user/
+│   └── main.ts
 
 ```
 
@@ -63,3 +86,16 @@ src/
 
 - Frameworks & Drivers
   - NestJs 프레임워크 및 외부 시스템과의 연결 담당
+
+### 프로젝트 셋팅 방법
+
+```bash
+git clone https://github.com/sora9z/nestjs-boilerplate.git my-new-project
+
+cd my-new-project
+rm -rf .git
+git init
+git remote add origin <새로운 리포지토리 URL>
+git add .
+git commit -m "Initial commit based on boilerplate"
+```

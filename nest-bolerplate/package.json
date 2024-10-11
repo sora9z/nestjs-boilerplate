@@ -8,6 +8,7 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "setup": "git init && yarn install && cp .env.example .env",
     "start": "nest start",
     "start:dev": "NODE_ENV=local nest start --watch",
     "start:debug": "nest start --debug --watch",
