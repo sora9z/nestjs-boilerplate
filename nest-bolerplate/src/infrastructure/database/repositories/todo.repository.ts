@@ -2,19 +2,18 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 
-import { ITodoRepository } from 'core/repositories/todoRepository.interface';
 import { Todo } from '../entities/todo.entity';
 import { TodoE } from 'core/entity/todo.entity';
+import { TodoRepository } from 'core/repositories/todoRepository.interface';
 
 @Injectable()
-export class TodoRepository implements ITodoRepository {
+export class TodoRepositoryImpl implements TodoRepository {
   constructor(
     @InjectRepository(Todo)
     private readonly todoEntityRepository: Repository<Todo>,
   ) {}
 
   async insert(todo: TodoE): Promise<TodoE> {
-    console.log('흠', todo);
     const todoEntity: Todo = this.toTodoEntity(todo);
 
     const result = await this.todoEntityRepository.insert(todoEntity);
